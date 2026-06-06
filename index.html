@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Artha Interior Designers — Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-pale: #F5E6B8;
+      --navy: #0A0E1A;
+      --navy-mid: #111827;
+      --navy-light: #1a2235;
+      --white: #FDFAF3;
+      --cream: #F0E8D5;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: var(--navy);
+      font-family: 'Raleway', sans-serif;
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ── CANVAS PARTICLES ── */
+    canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── BACKGROUND RADIAL GLOW ── */
+    .bg-glow {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,168,76,0.10) 0%, transparent 70%),
+        radial-gradient(ellipse 100% 80% at 50% 100%, rgba(10,14,26,1) 0%, transparent 60%),
+        linear-gradient(160deg, #080C17 0%, #0D1322 40%, #111827 100%);
+    }
+
+    /* ── DECORATIVE CORNER ORNAMENTS ── */
+    .corner {
+      position: fixed;
+      width: 120px; height: 120px;
+      z-index: 1;
+      opacity: 0.45;
+    }
+    .corner svg { width: 100%; height: 100%; }
+    .corner.tl { top: 18px; left: 18px; }
+    .corner.tr { top: 18px; right: 18px; transform: scaleX(-1); }
+    .corner.bl { bottom: 18px; left: 18px; transform: scaleY(-1); }
+    .corner.br { bottom: 18px; right: 18px; transform: scale(-1,-1); }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      gap: 0;
+    }
+
+    /* ── LOGO ── */
+    .logo-wrap {
+      position: relative;
+      width: 200px; height: 200px;
+      margin-bottom: 40px;
+      animation: floatLogo 6s ease-in-out infinite;
+    }
+    .logo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -18px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    .logo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.3);
+      animation: ring-rotate 12s linear infinite;
+    }
+    .logo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 28px rgba(201,168,76,0.55)) drop-shadow(0 0 60px rgba(201,168,76,0.2));
+      animation: logoReveal 1.4s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.08); }
+    }
+    @keyframes ring-rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes logoReveal {
+      from { opacity: 0; transform: scale(0.7); filter: blur(12px); }
+      to { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 28px rgba(201,168,76,0.55)) drop-shadow(0 0 60px rgba(201,168,76,0.2)); }
+    }
+
+    /* ── DIVIDER ── */
+    .ornament-line {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      animation: fadeUp 1s 0.4s both;
+    }
+    .ornament-line .line {
+      width: 70px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .ornament-line .diamond {
+      width: 7px; height: 7px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      box-shadow: 0 0 10px rgba(201,168,76,0.6);
+    }
+
+    /* ── COMING SOON ── */
+    .coming-soon {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(11px, 2.2vw, 14px);
+      letter-spacing: 0.45em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      animation: fadeUp 1s 0.5s both;
+      font-weight: 400;
+    }
+
+    /* ── HEADLINE ── */
+    .headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 9vw, 86px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      animation: fadeUp 1s 0.65s both;
+      margin-bottom: 4px;
+    }
+    .headline em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    /* ── TAGLINE ── */
+    .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(16px, 3vw, 22px);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(240,232,213,0.65);
+      letter-spacing: 0.12em;
+      margin-bottom: 44px;
+      animation: fadeUp 1s 0.8s both;
+    }
+
+    /* ── CTA BUTTON ── */
+    .cta-wrap {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 52px;
+      animation: fadeUp 1s 0.95s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 0;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateX(-101%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      z-index: 0;
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { color: var(--navy); }
+    .btn-primary span, .btn-primary svg { position: relative; z-index: 1; }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.3);
+      color: rgba(240,232,213,0.6);
+    }
+    .btn-secondary:hover {
+      border-color: rgba(201,168,76,0.7);
+      color: var(--gold-pale);
+    }
+    .btn-secondary svg { position: relative; z-index: 1; }
+
+    /* ── BOTTOM DIVIDER ── */
+    .bottom-divider {
+      width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+      margin-bottom: 28px;
+      animation: fadeUp 1s 1.05s both;
+    }
+
+    /* ── CONTACT INFO ── */
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px 40px;
+      justify-content: center;
+      align-items: center;
+      animation: fadeUp 1s 1.1s both;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: rgba(240,232,213,0.45);
+      text-transform: uppercase;
+      font-weight: 300;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .info-item:hover { color: var(--gold-light); }
+    .info-item svg { flex-shrink: 0; opacity: 0.6; }
+
+
+    /* ── LETTERMARK ── */
+    .lettermark {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #0D1830 0%, #111827 100%);
+      border: 1.5px solid rgba(201,168,76,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 88px;
+      font-weight: 700;
+      color: var(--gold);
+      text-shadow: 0 0 30px rgba(201,168,76,0.7), 0 0 60px rgba(201,168,76,0.3);
+      filter: drop-shadow(0 0 28px rgba(201,168,76,0.55));
+      user-select: none;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+
+    /* ── COPYRIGHT ── */
+    .copyright {
+      margin-top: 28px;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: rgba(240,232,213,0.25);
+      font-weight: 300;
+      text-transform: uppercase;
+      animation: fadeUp 1s 1.2s both;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 500px) {
+      html, body { overflow-y: auto; }
+      .logo-wrap { width: 160px; height: 160px; }
+      .corner { width: 70px; height: 70px; }
+      .corner.tl { top: 10px; left: 10px; }
+      .corner.tr { top: 10px; right: 10px; }
+      .corner.bl { bottom: 10px; left: 10px; }
+      .corner.br { bottom: 10px; right: 10px; }
+      .btn { padding: 12px 22px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-glow"></div>
+  <canvas id="particles"></canvas>
+
+  <!-- Corner ornaments -->
+  <div class="corner tl">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 5 L5 40 M5 5 L40 5" stroke="#C9A84C" stroke-width="1.2"/>
+      <path d="M5 5 L22 22" stroke="#C9A84C" stroke-width="0.6" opacity="0.5"/>
+      <rect x="3" y="3" width="4" height="4" fill="#C9A84C" opacity="0.8"/>
+      <circle cx="40" cy="5" r="1.5" fill="#C9A84C" opacity="0.5"/>
+      <circle cx="5" cy="40" r="1.5" fill="#C9A84C" opacity="0.5"/>
+      <path d="M16 5 L5 16" stroke="#C9A84C" stroke-width="0.4" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="corner tr">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 5 L5 40 M5 5 L40 5" stroke="#C9A84C" stroke-width="1.2"/>
+      <path d="M5 5 L22 22" stroke="#C9A84C" stroke-width="0.6" opacity="0.5"/>
+      <rect x="3" y="3" width="4" height="4" fill="#C9A84C" opacity="0.8"/>
+      <circle cx="40" cy="5" r="1.5" fill="#C9A84C" opacity="0.5"/>
+      <circle cx="5" cy="40" r="1.5" fill="#C9A84C" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="corner bl">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 5 L5 40 M5 5 L40 5" stroke="#C9A84C" stroke-width="1.2"/>
+      <path d="M5 5 L22 22" stroke="#C9A84C" stroke-width="0.6" opacity="0.5"/>
+      <rect x="3" y="3" width="4" height="4" fill="#C9A84C" opacity="0.8"/>
+      <circle cx="40" cy="5" r="1.5" fill="#C9A84C" opacity="0.5"/>
+      <circle cx="5" cy="40" r="1.5" fill="#C9A84C" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="corner br">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 5 L5 40 M5 5 L40 5" stroke="#C9A84C" stroke-width="1.2"/>
+      <path d="M5 5 L22 22" stroke="#C9A84C" stroke-width="0.6" opacity="0.5"/>
+      <rect x="3" y="3" width="4" height="4" fill="#C9A84C" opacity="0.8"/>
+      <circle cx="40" cy="5" r="1.5" fill="#C9A84C" opacity="0.5"/>
+      <circle cx="5" cy="40" r="1.5" fill="#C9A84C" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+
+    <!-- Logo -->
+    <div class="logo-wrap">
+      <div class="lettermark">A</div>
+    </div>
+
+    <!-- Ornament -->
+    <div class="ornament-line">
+      <div class="line"></div>
+      <div class="diamond"></div>
+      <div class="line"></div>
+    </div>
+
+    <p class="coming-soon">Coming Soon</p>
+
+    <h1 class="headline">Artha <em>Interior</em><br>Designers</h1>
+    <p class="tagline">Design Your Dreams</p>
+
+    <!-- CTAs -->
+    <div class="cta-wrap">
+      <a href="https://wa.me/919845840824?text=Hello%20Artha%20Interior%20Designers%2C%20I%20am%20interested%20in%20your%20services."
+         class="btn btn-primary" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L0 24l6.335-1.502A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.958 0-3.792-.533-5.367-1.459l-.385-.229-3.985.945.963-3.882-.25-.398A9.945 9.945 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+        <span>Get in Touch</span>
+      </a>
+
+      <a href="https://www.instagram.com/interiors_by_artha/"
+         class="btn btn-secondary" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+        <span>Follow Our Work</span>
+      </a>
+    </div>
+
+    <div class="bottom-divider"></div>
+
+    <!-- Info Row -->
+    <div class="info-row">
+      <a href="tel:+919845840824" class="info-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+        +91 98458 40824
+      </a>
+
+      <span class="info-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        RT Nagar, Bangalore 560032
+      </span>
+
+      <a href="http://www.arthagroups.com" class="info-item" target="_blank" rel="noopener">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+        </svg>
+        www.arthagroups.com
+      </a>
+    </div>
+
+
+    <!-- Copyright -->
+    <p class="copyright">© 2026 Artha Interior Designers. All Rights Reserved.</p>
+
+  </div>
+
+  <script>
+    // ── LOGO: try to load from uploaded image path
+    // Since we can't embed the actual logo URL here, replace this src with your actual hosted logo URL
+    // For now the fallback SVG renders the brand identity correctly.
+
+    // ── PARTICLES
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', () => { resize(); init(); });
+
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = rand(0, W);
+        this.y = rand(0, H);
+        this.size = rand(0.5, 2.2);
+        this.alpha = rand(0.08, 0.55);
+        this.speed = rand(0.08, 0.35);
+        this.angle = rand(0, Math.PI * 2);
+        this.drift = rand(-0.003, 0.003);
+        this.pulse = rand(0, Math.PI * 2);
+        this.pulseSpeed = rand(0.005, 0.02);
+        this.gold = Math.random() > 0.6;
+      }
+      update() {
+        this.angle += this.drift;
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y -= this.speed * 0.4;
+        this.pulse += this.pulseSpeed;
+        if (this.y < -10 || this.x < -10 || this.x > W + 10) this.reset();
+      }
+      draw() {
+        const a = this.alpha * (0.7 + 0.3 * Math.sin(this.pulse));
+        ctx.save();
+        ctx.globalAlpha = a;
+        ctx.fillStyle = this.gold ? '#C9A84C' : '#FDFAF3';
+        ctx.shadowColor = this.gold ? '#C9A84C' : '#FDFAF3';
+        ctx.shadowBlur = this.gold ? 8 : 3;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function init() {
+      const count = Math.floor((W * H) / 8000);
+      particles = Array.from({ length: Math.min(count, 130) }, () => new Particle());
+    }
+    init();
+
+    function loop() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(loop);
+    }
+    loop();
+  </script>
+</body>
+</html>
