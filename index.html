@@ -1,532 +1,251 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Artha Interior Designers — Coming Soon</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Cinzel:wght@400;600;700&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARTHA Interior Designers | Design Your Dreams</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-    :root {
-      --navy:       #060D1C;
-      --navy2:      #091222;
-      --navy3:      #0D1A30;
-      --gold:       #F0B429;
-      --gold2:      #FFD166;
-      --gold3:      #E8960C;
-      --gold-glow:  rgba(240,180,41,0.25);
-      --gold-dim:   rgba(240,180,41,0.5);
-      --white:      #FFFDF7;
-      --soft:       rgba(255,253,247,0.7);
-      --muted:      rgba(255,253,247,0.38);
-    }
+body{
+background:#071d3a;
+color:#fff;
+overflow-x:hidden;
+}
 
-    html, body { width:100%; }
+:root{
+--gold:#d4af37;
+--navy:#071d3a;
+--light:#f5f5f5;
+}
 
-    body {
-      background: var(--navy);
-      font-family: 'Raleway', sans-serif;
-      color: var(--white);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow-x: hidden;
-    }
+header{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(7,29,58,.95);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
 
-    /* ── LAYERED BACKGROUND ── */
-    .bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background:
-        radial-gradient(ellipse 65% 50% at 50% 0%,   rgba(240,180,41,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 35% at 90% 90%,  rgba(240,180,41,0.10) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 35% at 5%  80%,  rgba(240,180,41,0.07) 0%, transparent 55%),
-        radial-gradient(ellipse 80% 60% at 50% 50%,  #0B1525 0%, #060D1C 100%);
-    }
+nav{
+max-width:1200px;
+margin:auto;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
 
-    /* ── ANIMATED GRADIENT SWEEP ── */
-    .bg-sweep {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background: conic-gradient(from 0deg at 50% 50%,
-        transparent 0deg,
-        rgba(240,180,41,0.04) 60deg,
-        transparent 120deg,
-        rgba(240,180,41,0.03) 200deg,
-        transparent 260deg
-      );
-      animation: rotateSweep 18s linear infinite;
-    }
-    @keyframes rotateSweep {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
+.logo img{
+height:70px;
+}
 
-    /* ── CORNER ORNAMENTS ── */
-    .corner {
-      position: fixed;
-      z-index: 2;
-      width: 110px; height: 110px;
-    }
-    .corner.tl { top:18px; left:18px; }
-    .corner.tr { top:18px; right:18px; transform:scaleX(-1); }
-    .corner.bl { bottom:18px; left:18px; transform:scaleY(-1); }
-    .corner.br { bottom:18px; right:18px; transform:scale(-1,-1); }
+.nav-links{
+display:flex;
+gap:25px;
+}
 
-    /* ── WRAPPER ── */
-    .wrapper {
-      position: relative;
-      z-index: 3;
-      width: 100%;
-      max-width: 720px;
-      padding: 64px 28px 52px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
+.nav-links a{
+color:white;
+text-decoration:none;
+font-weight:500;
+transition:.3s;
+}
 
-    /* ── LETTERMARK ── */
-    .mark-outer {
-      position: relative;
-      margin-bottom: 36px;
-      animation: dropIn 1s cubic-bezier(0.16,1,0.3,1) both;
-    }
+.nav-links a:hover{
+color:var(--gold);
+}
 
-    /* pulsing aura */
-    .mark-outer::before {
-      content:'';
-      position:absolute;
-      inset:-22px;
-      border-radius:50%;
-      background: radial-gradient(circle, rgba(240,180,41,0.22) 0%, transparent 70%);
-      animation: aura 3s ease-in-out infinite;
-    }
-    /* spinning dashed ring */
-    .mark-outer::after {
-      content:'';
-      position:absolute;
-      inset:-10px;
-      border-radius:50%;
-      border:1px dashed rgba(240,180,41,0.4);
-      animation: spin 14s linear infinite;
-    }
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:120px 20px 80px;
+background:
+linear-gradient(rgba(7,29,58,.75),rgba(7,29,58,.85)),
+url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80');
+background-size:cover;
+background-position:center;
+}
 
-    .mark {
-      width:168px; height:168px;
-      border-radius:50%;
-      background: linear-gradient(145deg, #0F1E3A 0%, #162340 50%, #0A1428 100%);
-      border:2px solid var(--gold);
-      box-shadow:
-        0 0 0 4px rgba(240,180,41,0.1),
-        0 0 50px rgba(240,180,41,0.28),
-        0 0 100px rgba(240,180,41,0.12),
-        inset 0 0 30px rgba(240,180,41,0.08),
-        0 30px 70px rgba(0,0,0,0.6);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family:'Cinzel', serif;
-      font-size:80px;
-      font-weight:700;
-      color: var(--gold2);
-      text-shadow:
-        0 0 15px rgba(240,180,41,1),
-        0 0 35px rgba(240,180,41,0.7),
-        0 0 70px rgba(240,180,41,0.4);
-      overflow:hidden;
-      animation: float 5s ease-in-out infinite;
-      user-select:none;
-      position:relative;
-      z-index:1;
-    }
-    .mark::after {
-      content:'';
-      position:absolute;
-      inset:8px;
-      border-radius:50%;
-      border:1px solid rgba(240,180,41,0.25);
-    }
+.hero-content{
+max-width:900px;
+}
 
-    @keyframes dropIn {
-      from { opacity:0; transform:translateY(-30px) scale(0.85); }
-      to   { opacity:1; transform:translateY(0) scale(1); }
-    }
-    @keyframes aura {
-      0%,100% { transform:scale(1);    opacity:0.7; }
-      50%      { transform:scale(1.12); opacity:1; }
-    }
-    @keyframes spin {
-      from { transform:rotate(0deg); }
-      to   { transform:rotate(360deg); }
-    }
-    @keyframes float {
-      0%,100% { transform:translateY(0); }
-      50%      { transform:translateY(-12px); }
-    }
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(20px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
+.hero img{
+width:180px;
+margin-bottom:25px;
+}
 
-    /* ── PRE LABEL ── */
-    .pre-label {
-      font-family:'Cinzel', serif;
-      font-size:10px;
-      letter-spacing:0.55em;
-      color: var(--gold-dim);
-      text-transform:uppercase;
-      margin-bottom:16px;
-      animation: fadeUp 1s 0.25s both;
-    }
+.hero h1{
+font-size:4rem;
+margin-bottom:15px;
+color:white;
+}
 
-    /* ── ORNAMENT ── */
-    .orn {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:20px;
-      animation: fadeUp 1s 0.35s both;
-    }
-    .orn .line {
-      width:60px; height:1px;
-      background:linear-gradient(90deg, transparent, var(--gold));
-    }
-    .orn .line.r { background:linear-gradient(90deg, var(--gold), transparent); }
-    .orn .gem {
-      width:7px; height:7px;
-      background:var(--gold);
-      transform:rotate(45deg);
-      box-shadow:0 0 12px rgba(240,180,41,0.9), 0 0 24px rgba(240,180,41,0.4);
-    }
+.hero h1 span{
+color:var(--gold);
+}
 
-    /* ── BRAND NAME ── */
-    .brand {
-      font-family:'Cormorant Garamond', serif;
-      font-size: clamp(62px, 15vw, 104px);
-      font-weight:700;
-      letter-spacing:0.06em;
-      line-height:1;
-      margin-bottom:6px;
-      background: linear-gradient(160deg, var(--gold2) 0%, var(--gold) 45%, var(--gold3) 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      filter: drop-shadow(0 0 30px rgba(240,180,41,0.5));
-      animation: fadeUp 1s 0.45s both;
-    }
+.hero p{
+font-size:1.2rem;
+line-height:1.8;
+margin-bottom:30px;
+}
 
-    .brand-sub {
-      font-family:'Cinzel', serif;
-      font-size: clamp(10px, 2.6vw, 14px);
-      font-weight:600;
-      letter-spacing:0.5em;
-      color: var(--soft);
-      text-transform:uppercase;
-      margin-bottom:14px;
-      animation: fadeUp 1s 0.55s both;
-    }
+.btn{
+display:inline-block;
+padding:15px 35px;
+background:var(--gold);
+color:#000;
+text-decoration:none;
+font-weight:600;
+border-radius:50px;
+}
 
-    /* ── TAGLINE ── */
-    .tagline {
-      font-family:'Cormorant Garamond', serif;
-      font-size: clamp(19px, 4.5vw, 26px);
-      font-style:italic;
-      font-weight:400;
-      color: var(--gold2);
-      letter-spacing:0.06em;
-      margin-bottom:42px;
-      text-shadow:0 0 20px rgba(240,180,41,0.3);
-      animation: fadeUp 1s 0.65s both;
-    }
+.section{
+padding:90px 20px;
+}
 
-    /* ── COMING SOON ── */
-    .badge {
-      display:inline-flex;
-      align-items:center;
-      gap:16px;
-      padding:13px 36px;
-      border:1px solid var(--gold);
-      background: rgba(240,180,41,0.08);
-      font-family:'Cinzel', serif;
-      font-size:11px;
-      letter-spacing:0.5em;
-      color: var(--gold2);
-      text-transform:uppercase;
-      margin-bottom:48px;
-      box-shadow:
-        0 0 20px rgba(240,180,41,0.12),
-        inset 0 0 20px rgba(240,180,41,0.05);
-      animation: fadeUp 1s 0.75s both;
-    }
-    .badge .gem-s {
-      width:5px; height:5px;
-      background:var(--gold);
-      transform:rotate(45deg);
-      box-shadow:0 0 8px rgba(240,180,41,0.8);
-      flex-shrink:0;
-    }
+.container{
+max-width:1200px;
+margin:auto;
+}
 
-    /* ── DIVIDER ── */
-    .div {
-      width:100%;
-      max-width:360px;
-      height:1px;
-      background:linear-gradient(90deg, transparent, rgba(240,180,41,0.5), transparent);
-      margin-bottom:40px;
-      animation: fadeUp 1s 0.8s both;
-    }
+.section-title{
+text-align:center;
+font-size:2.5rem;
+margin-bottom:50px;
+color:var(--gold);
+}
 
-    /* ── BUTTONS ── */
-    .btns {
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      justify-content:center;
-      margin-bottom:44px;
-      animation: fadeUp 1s 0.88s both;
-    }
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
 
-    .btn {
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:15px 32px;
-      font-family:'Raleway', sans-serif;
-      font-size:11px;
-      font-weight:500;
-      letter-spacing:0.22em;
-      text-transform:uppercase;
-      text-decoration:none;
-      cursor:pointer;
-      transition:all 0.3s ease;
-    }
+.card{
+background:#0d2a52;
+padding:30px;
+border-radius:15px;
+text-align:center;
+transition:.3s;
+}
 
-    .btn-wa {
-      background: rgba(37,211,102,0.12);
-      color: #25D366;
-      border: 1.5px solid #25D366;
-      box-shadow: 0 0 18px rgba(37,211,102,0.2), 0 4px 20px rgba(0,0,0,0.3);
-      font-weight: 600;
-    }
-    .btn-wa:hover {
-      background: rgba(37,211,102,0.22);
-      box-shadow: 0 0 30px rgba(37,211,102,0.35), 0 8px 30px rgba(0,0,0,0.3);
-      transform: translateY(-3px);
-    }
+.card:hover{
+transform:translateY(-8px);
+}
 
-    .btn-ig {
-      background: rgba(193,53,132,0.1);
-      color: #e1306c;
-      border: 1.5px solid #e1306c;
-      box-shadow: 0 0 18px rgba(193,53,132,0.2), 0 4px 20px rgba(0,0,0,0.3);
-      font-weight: 500;
-    }
-    .btn-ig:hover {
-      background: rgba(193,53,132,0.2);
-      box-shadow: 0 0 30px rgba(193,53,132,0.35), 0 8px 30px rgba(0,0,0,0.3);
-      transform: translateY(-3px);
-    }
+.card i{
+font-size:40px;
+color:var(--gold);
+margin-bottom:20px;
+}
 
-    /* ── INFO ── */
-    .info {
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px 28px;
-      justify-content:center;
-      margin-bottom:36px;
-      animation: fadeUp 1s 0.96s both;
-    }
-    .info-item {
-      display:flex;
-      align-items:center;
-      gap:7px;
-      font-size:11px;
-      letter-spacing:0.1em;
-      color:var(--muted);
-      text-decoration:none;
-      font-weight:300;
-      transition:color 0.25s, text-shadow 0.25s;
-    }
-    .info-item:hover {
-      color:var(--gold2);
-      text-shadow:0 0 10px rgba(240,180,41,0.4);
-    }
-    .info-item svg { flex-shrink:0; opacity:0.7; }
+.card h3{
+margin-bottom:15px;
+}
 
-    /* ── COPYRIGHT ── */
-    .copy {
-      font-size:9.5px;
-      letter-spacing:0.22em;
-      color:rgba(255,253,247,0.75);
-      font-weight:300;
-      text-transform:uppercase;
-      animation: fadeUp 1s 1.05s both;
-    }
+.contact{
+text-align:center;
+background:#0d2a52;
+border-radius:20px;
+padding:50px 20px;
+}
 
-    /* ── MOBILE ── */
-    @media (max-width:480px) {
-      .wrapper { padding:52px 20px 44px; }
-      .mark { width:136px; height:136px; font-size:64px; }
-      .mark-outer::after { inset:-7px; }
-      .mark-outer::before { inset:-16px; }
-      .corner { width:64px; height:64px; }
-      .corner.tl { top:10px; left:10px; }
-      .corner.tr { top:10px; right:10px; }
-      .corner.bl { bottom:10px; left:10px; }
-      .corner.br { bottom:10px; right:10px; }
-      .btns { flex-direction:column; align-items:center; width:100%; }
-      .btn { width:100%; max-width:300px; justify-content:center; }
-      .orn .line { width:40px; }
-      .info { gap:12px 16px; }
-    }
-  </style>
-</head>
-<body>
+.contact h2{
+color:var(--gold);
+margin-bottom:20px;
+}
 
-<div class="bg"></div>
-<div class="bg-sweep"></div>
+.contact p{
+margin-bottom:15px;
+}
 
-<!-- Corner ornaments -->
-<div class="corner tl">
-  <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 6 L6 46 M6 6 L46 6" stroke="#F0B429" stroke-width="1.5" opacity="0.7"/>
-    <path d="M6 6 L20 20" stroke="#F0B429" stroke-width="0.7" opacity="0.35"/>
-    <rect x="3.5" y="3.5" width="5" height="5" fill="#F0B429" opacity="0.85"/>
-    <circle cx="46" cy="6" r="1.8" fill="#F0B429" opacity="0.5"/>
-    <circle cx="6"  cy="46" r="1.8" fill="#F0B429" opacity="0.5"/>
-    <path d="M20 6 L6 20" stroke="#F0B429" stroke-width="0.5" opacity="0.25"/>
-  </svg>
+.socials{
+margin-top:25px;
+}
+
+.socials a{
+display:inline-flex;
+justify-content:center;
+align-items:center;
+width:55px;
+height:55px;
+border-radius:50%;
+background:var(--gold);
+color:#000;
+text-decoration:none;
+font-size:24px;
+margin:0 10px;
+}
+
+footer{
+text-align:center;
+padding:30px;
+background:#041224;
+font-size:14px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:2.5rem;
+}
+
+.nav-links{
+display:none;
+}
+
+.hero img{
+width:130px;
+}
+}
+</style></head><body><header>
+<nav>
+<div class="logo">
+<img src="assets/artha.png" alt="ARTHA">
+</div><div class="nav-links">
+<a href="#">Home</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
 </div>
-<div class="corner tr">
-  <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 6 L6 46 M6 6 L46 6" stroke="#F0B429" stroke-width="1.5" opacity="0.7"/>
-    <rect x="3.5" y="3.5" width="5" height="5" fill="#F0B429" opacity="0.85"/>
-    <circle cx="46" cy="6" r="1.8" fill="#F0B429" opacity="0.5"/>
-    <circle cx="6"  cy="46" r="1.8" fill="#F0B429" opacity="0.5"/>
-  </svg>
-</div>
-<div class="corner bl">
-  <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 6 L6 46 M6 6 L46 6" stroke="#F0B429" stroke-width="1.5" opacity="0.7"/>
-    <rect x="3.5" y="3.5" width="5" height="5" fill="#F0B429" opacity="0.85"/>
-    <circle cx="46" cy="6" r="1.8" fill="#F0B429" opacity="0.5"/>
-    <circle cx="6"  cy="46" r="1.8" fill="#F0B429" opacity="0.5"/>
-  </svg>
-</div>
-<div class="corner br">
-  <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 6 L6 46 M6 6 L46 6" stroke="#F0B429" stroke-width="1.5" opacity="0.7"/>
-    <rect x="3.5" y="3.5" width="5" height="5" fill="#F0B429" opacity="0.85"/>
-    <circle cx="46" cy="6" r="1.8" fill="#F0B429" opacity="0.5"/>
-    <circle cx="6"  cy="46" r="1.8" fill="#F0B429" opacity="0.5"/>
-  </svg>
-</div>
-
-<div class="wrapper">
-
-  <!-- Logo -->
-  <div class="mark-outer">
-    <div class="mark">
-      <img src="https://raw.githubusercontent.com/badgerh001-ai/arthagroups.com/main/assets/artha.png"
-           alt="Artha Interior Designers"
-           onerror="this.style.display='none'; this.parentElement.innerHTML='A';"
-           style="width:110px; height:110px; object-fit:contain; border-radius:50%; display:block;"/>
-    </div>
-  </div>
-
-  <p class="pre-label">Est. 2026 &nbsp;·&nbsp; Bangalore</p>
-
-  <div class="orn">
-    <div class="line"></div>
-    <div class="gem"></div>
-    <div class="line r"></div>
-  </div>
-
-  <h1 class="brand">Artha</h1>
-  <p class="brand-sub">Interior Designers</p>
-  <p class="tagline">" Design Your Dreams "</p>
-
-  <div class="badge">
-    <span class="gem-s"></span>
-    Coming Soon
-    <span class="gem-s"></span>
-  </div>
-
-  <div class="div"></div>
-
-  <div class="btns">
-    <a href="https://wa.me/919845840824?text=Hello%20Artha%20Interior%20Designers%2C%20I%20am%20interested%20in%20your%20services."
-       class="btn btn-wa" target="_blank" rel="noopener">
-      <svg width="20" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <radialGradient id="waBg" cx="11.087" cy="11.075" r="40.411" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="#55d163"/>
-          <stop offset=".297" stop-color="#57d163"/>
-          <stop offset=".532" stop-color="#5fd265"/>
-          <stop offset=".75" stop-color="#6cd368"/>
-          <stop offset=".956" stop-color="#7fd56d"/>
-          <stop offset="1" stop-color="#84d66e"/>
-        </radialGradient>
-        <path fill="url(#waBg)" d="M24 4C12.973 4 4 12.973 4 24c0 3.678.995 7.131 2.727 10.093L4 44l10.203-2.688C17.05 42.995 20.432 44 24 44c11.027 0 20-8.973 20-20S35.027 4 24 4z"/>
-        <path fill="#fff" d="M33.95 28.83c-.496-.247-2.936-1.447-3.391-1.613-.455-.165-.786-.247-1.117.248-.33.494-1.281 1.612-1.571 1.943-.289.33-.579.371-1.075.124-2.459-1.229-4.073-2.193-5.693-4.974-.43-.74.43-.687 1.23-2.285.137-.289.069-.537-.041-.784-.11-.248-.993-2.393-1.36-3.275-.357-.861-.72-.744-1-.757-.259-.012-.557-.015-.854-.015-.297 0-.785.111-1.196.557-.413.447-1.571 1.533-1.571 3.737s1.609 4.337 1.833 4.635c.23.297 3.161 4.825 7.66 6.771 2.846 1.228 3.963 1.333 5.387 1.123.867-.13 2.936-1.199 3.349-2.358.413-1.158.413-2.15.289-2.357-.12-.206-.451-.33-.946-.578z"/>
-      </svg>
-      WhatsApp Us
-    </a>
-    <a href="https://www.instagram.com/interiors_by_artha/"
-       class="btn btn-ig" target="_blank" rel="noopener">
-      <svg width="20" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="igGrad1" cx="19.938" cy="42.035" r="44.898" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#fd5"/>
-            <stop offset=".328" stop-color="#ff543f"/>
-            <stop offset=".348" stop-color="#fc5245"/>
-            <stop offset=".504" stop-color="#e64771"/>
-            <stop offset=".643" stop-color="#d53e91"/>
-            <stop offset=".761" stop-color="#cc39a4"/>
-            <stop offset=".841" stop-color="#c837ab"/>
-          </radialGradient>
-          <radialGradient id="igGrad2" cx="11.786" cy="5.54" r="29.813" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#4168c9"/>
-            <stop offset=".999" stop-color="#4168c9" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <path fill="url(#igGrad1)" d="M34.017 41.99l-20 .019c-4.4.004-8.003-3.592-8.008-7.992l-.019-20c-.004-4.4 3.592-8.003 7.992-8.008l20-.019c4.4-.004 8.003 3.592 8.008 7.992l.019 20c.005 4.401-3.592 8.004-7.992 8.008z"/>
-        <path fill="url(#igGrad2)" d="M34.017 41.99l-20 .019c-4.4.004-8.003-3.592-8.008-7.992l-.019-20c-.004-4.4 3.592-8.003 7.992-8.008l20-.019c4.4-.004 8.003 3.592 8.008 7.992l.019 20c.005 4.401-3.592 8.004-7.992 8.008z"/>
-        <path fill="#fff" d="M24 31c-3.859 0-7-3.14-7-7s3.141-7 7-7 7 3.14 7 7-3.141 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zm6.5-3c-.828 0-1.5.671-1.5 1.5S29.672 19 30.5 19s1.5-.671 1.5-1.5S31.328 16 30.5 16zM34 12H14c-1.103 0-2 .897-2 2v20c0 1.103.897 2 2 2h20c1.103 0 2-.897 2-2V14c0-1.103-.897-2-2-2zm0 22H14V14h20v20z"/>
-      </svg>
-      Our Work
-    </a>
-  </div>
-
-  <div class="info">
-    <a href="tel:+919845840824" class="info-item">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-      </svg>
-      +91 98458 40824
-    </a>
-    <span class="info-item">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-      </svg>
-      RT Nagar, Bangalore — 560032
-    </span>
-    <a href="http://www.arthagroups.com" class="info-item" target="_blank" rel="noopener">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-      </svg>
-      www.arthagroups.com
-    </a>
-  </div>
-
-  <p class="copy">© 2024 Artha Interior Designers. All Rights Reserved.</p>
-
-</div>
-
-</body>
+</nav>
+</header><section class="hero"><div class="hero-content"><img src="assets/artha.png" alt="ARTHA Logo"><h1>ARTHA <span>Interior Designers</span></h1><p>
+Transforming spaces into timeless experiences.
+Luxury interiors, modern designs and customized solutions
+crafted to match your vision.
+</p><a href="https://wa.me/919845840824" class="btn">
+Get Free Consultation
+</a></div></section><section id="services" class="section"><div class="container"><h2 class="section-title">Our Services</h2><div class="services"><div class="card">
+<i class="fa-solid fa-couch"></i>
+<h3>Residential Interiors</h3>
+<p>Elegant living spaces tailored to your lifestyle.</p>
+</div><div class="card">
+<i class="fa-solid fa-kitchen-set"></i>
+<h3>Modular Kitchens</h3>
+<p>Functional and luxurious kitchen solutions.</p>
+</div><div class="card">
+<i class="fa-solid fa-building"></i>
+<h3>Commercial Interiors</h3>
+<p>Professional environments that inspire productivity.</p>
+</div><div class="card">
+<i class="fa-solid fa-bed"></i>
+<h3>Custom Furniture</h3>
+<p>Unique furniture crafted for your interiors.</p>
+</div></div></div></section><section id="contact" class="section"><div class="container"><div class="contact"><h2>Contact Us</h2><p><strong>ARTHA Interior Designers</strong></p><p>RT Nagar, Bangalore - 560032</p><p>📞 +91 98458 40824</p><p>Design Your Dreams</p><div class="socials"><a href="https://wa.me/919845840824">
+<i class="fab fa-whatsapp"></i>
+</a><a href="https://www.instagram.com/interiors_by_artha?igsh=MW16ZW95eG81Nm43OA==">
+<i class="fab fa-instagram"></i>
+</a></div></div></div></section><footer>
+© Copyright 2024 ARTHA Interior Designers. All Rights Reserved.
+</footer></body>
 </html>
