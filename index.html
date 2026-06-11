@@ -695,35 +695,48 @@ document.addEventListener('click', (e) => {
 </script>
 
 <script>
-// Counter animation for stats
-function animateCounter(el, target, suffix) {
-  let start = 0;
-  const duration = 2000;
-  const step = target / (duration / 16);
-  const timer = setInterval(() => {
-    start += step;
-    if (start >= target) {
-      el.textContent = target + suffix;
-      clearInterval(timer);
-    } else {
-      el.textContent = Math.floor(start) + suffix;
-    }
-  }, 16);
-}
-
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting && !e.target.dataset.counted) {
-      e.target.dataset.counted = true;
-      const text = e.target.textContent;
-      const num = parseInt(text);
-      const suffix = text.replace(num.toString(), '');
-      animateCounter(e.target, num, suffix);
-    }
+// Counter animation — fires only when in viewport
+document.addEventListener('DOMContentLoaded', function() {
+  // Store original values before any animation
+  const statEls = document.querySelectorAll('.stat-num');
+  const targets = [];
+  statEls.forEach(el => {
+    const raw = el.textContent.trim();
+    const num = parseInt(raw.replace(/[^0-9]/g, ''));
+    const suffix = raw.replace(/[0-9]/g, '');
+    targets.push({ el, num, suffix, done: false });
+    el.textContent = '0' + suffix; // reset to 0 initially
   });
-}, { threshold: 0.5 });
 
-document.querySelectorAll('.stat-num').forEach(el => statsObserver.observe(el));
+  function animateCounter(obj) {
+    if (obj.done) return;
+    obj.done = true;
+    let start = 0;
+    const duration = 1800;
+    const steps = 60;
+    const increment = obj.num / steps;
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      start = Math.min(Math.round(increment * step), obj.num);
+      obj.el.textContent = start + obj.suffix;
+      if (start >= obj.num) clearInterval(timer);
+    }, duration / steps);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(statEls).indexOf(entry.target);
+        if (idx > -1 && !targets[idx].done) {
+          setTimeout(() => animateCounter(targets[idx]), idx * 150);
+        }
+      }
+    });
+  }, { threshold: 0.6 });
+
+  statEls.forEach(el => observer.observe(el));
+});
 </script>
 
 </body>
