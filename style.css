@@ -128,7 +128,7 @@ nav {
 
 /* HERO LOGO — big, clean, no glow/animation/background */
 .hero-logo {
-  width: min(800px, 98vw);
+  width: min(1200px, 100vw);
   height: auto;
   max-height: none;
   border-radius: 0;
