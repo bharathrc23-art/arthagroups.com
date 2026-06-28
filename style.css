@@ -43,21 +43,20 @@ nav {
   transition: padding 0.3s ease;
 }
 
-/* NAV LOGO — circular using goldlogo.png */
+/* NAV LOGO — full uncropped logo, no circle mask */
 .nav-logo img {
-  width: 56px;
   height: 56px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center 15%;
-  border: 2px solid rgba(212,160,23,0.5);
-  box-shadow: 0 0 14px rgba(201,168,76,0.3);
+  width: auto;
+  border-radius: 0;
+  object-fit: contain;
+  object-position: center;
+  border: none;
+  box-shadow: none;
   display: block;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.4s ease;
 }
 .nav-logo img:hover {
   transform: translateY(-3px);
-  box-shadow: 0 0 0 2px var(--gold), 0 0 18px rgba(201,168,76,0.5);
 }
 
 .nav-links { display: flex; gap: 36px; }
@@ -129,7 +128,7 @@ nav {
 
 /* HERO LOGO — the dominant visual element in the hero */
 .hero-logo {
-  width: min(540px, 78%);
+  width: min(440px, 64%);
   height: auto;
   max-height: none;
   border-radius: 0;
@@ -151,14 +150,14 @@ nav {
 .hero-tagline {
   font-family: 'Montserrat', sans-serif;
   font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-  color: var(--gold-light); margin-bottom: 12px;
+  color: var(--gold-light); margin-bottom: 8px;
   text-shadow: 0 0 16px rgba(240,192,64,0.5);
 }
 .hero-headline {
   font-family: 'Cinzel', serif;
-  font-size: clamp(32px, 4.5vw, 58px);
-  font-weight: 400; line-height: 1.15;
-  color: var(--white); margin-bottom: 16px; letter-spacing: 2px;
+  font-size: clamp(26px, 3.6vw, 50px);
+  font-weight: 400; line-height: 1.12;
+  color: var(--white); margin-bottom: 12px; letter-spacing: 2px;
 }
 .hero-headline em {
   font-style: italic;
@@ -166,9 +165,9 @@ nav {
   color: var(--gold-light); font-size: 1.1em;
 }
 .hero-sub {
-  font-size: 17px; font-weight: 300;
-  color: var(--white-dim); line-height: 1.7;
-  margin-bottom: 28px; font-style: italic;
+  font-size: 16px; font-weight: 300;
+  color: var(--white-dim); line-height: 1.5;
+  margin-bottom: 20px; font-style: italic;
 }
 .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
@@ -491,8 +490,8 @@ section { padding: 100px 60px; }
 /* ── FOOTER ── */
 footer { background: #070F1A; border-top: 1px solid rgba(201,168,76,0.15); }
 .footer-top { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 64px; padding: 60px 60px 40px; align-items: start; }
-.footer-brand img { height: 64px; width: 64px; border-radius: 50%; object-fit: cover; object-position: center 15%; border: 2px solid rgba(212,160,23,0.5); margin-bottom: 12px; display: block; transition: transform 0.4s ease, box-shadow 0.4s ease; }
-.footer-brand img:hover { transform: translateY(-3px); box-shadow: 0 0 0 2px var(--gold), 0 0 18px rgba(201,168,76,0.5); }
+.footer-brand img { height: 64px; width: auto; border-radius: 0; object-fit: contain; object-position: center; border: none; margin-bottom: 12px; display: block; transition: transform 0.4s ease; }
+.footer-brand img:hover { transform: translateY(-3px); }
 .footer-tagline { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--white-dim); margin-bottom: 16px; }
 .footer-social { display: flex; gap: 10px; margin-top: 8px; }
 .social-btn { width: 38px; height: 38px; border: 1px solid rgba(212,160,23,0.2); display: flex; align-items: center; justify-content: center; border-radius: 4px; transition: border-color 0.3s, background 0.3s; overflow: hidden; }
@@ -596,6 +595,6 @@ footer { background: #070F1A; border-top: 1px solid rgba(201,168,76,0.15); }
   .values-strip { grid-template-columns: 1fr 1fr !important; }
   .value-item { padding: 20px 12px !important; font-size: 9px !important; }
   .section-sep { display: none; }
-  .nav-logo img { width: 44px !important; height: 44px !important; }
+  .nav-logo img { height: 44px !important; width: auto !important; }
   .footer-links-col ul li a { font-size: 10px !important; letter-spacing: 1px !important; }
 }
