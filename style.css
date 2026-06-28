@@ -126,9 +126,9 @@ nav {
   gap: 0;
 }
 
-/* HERO LOGO — big, clean, no glow/animation/background */
+/* HERO LOGO — sized relative to hero content, not the viewport */
 .hero-logo {
-  width: min(1200px, 100vw);
+  width: min(420px, 70%);
   height: auto;
   max-height: none;
   border-radius: 0;
@@ -573,7 +573,7 @@ footer { background: #070F1A; border-top: 1px solid rgba(201,168,76,0.15); }
   .hero-sub { font-size: 15px !important; }
   .hero-btns { flex-direction: column !important; align-items: stretch !important; }
   .btn-primary, .btn-outline { text-align: center !important; width: 100% !important; padding: 16px 20px !important; }
-  .hero-logo { width: 100vw !important; }
+  .hero-logo { width: 80% !important; }
   .stat-num { font-size: 32px !important; }
   .stat-label { font-size: 9px !important; }
   .services-grid { grid-template-columns: 1fr !important; }
