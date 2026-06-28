@@ -593,7 +593,7 @@ footer { background: #070F1A; border-top: 1px solid rgba(201,168,76,0.15); }
   .hero {
     min-height: auto !important;
     align-items: flex-start !important;
-    padding-top: 28px !important;
+    padding-top: 96px !important;
     padding-bottom: 40px !important;
   }
   .hero-scroll { display: none !important; }
@@ -619,7 +619,7 @@ footer { background: #070F1A; border-top: 1px solid rgba(201,168,76,0.15); }
   .form-row { grid-template-columns: 1fr !important; }
   .section-title { font-size: 24px !important; }
   .footer-top { grid-template-columns: 1fr !important; }
-  .footer-brand img { height: 52px !important; width: 52px !important; }
+  .footer-brand img { height: 52px !important; width: auto !important; }
   .about-features { grid-template-columns: 1fr !important; gap: 12px !important; }
   .values-strip { grid-template-columns: 1fr 1fr !important; }
   .value-item { padding: 20px 12px !important; font-size: 9px !important; }
